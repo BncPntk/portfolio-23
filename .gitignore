@@ -7,3 +7,5 @@ node_modules/
 
 # Optional: IDE/Editor specific files
 .vscode/
+# Local Netlify folder
+.netlify
