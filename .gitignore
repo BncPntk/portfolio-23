@@ -1,0 +1,9 @@
+# Node.js
+node_modules/
+
+# Dependency directories
+/dist/
+/tmp/
+
+# Optional: IDE/Editor specific files
+.vscode/

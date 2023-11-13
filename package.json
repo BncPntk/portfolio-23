@@ -1,0 +1,20 @@
+{
+  "name": "portfolio-23",
+  "version": "1.0.0",
+  "description": "My personal portfolio",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js"
+  },
+  "keywords": [
+    "portfolio",
+    "web",
+    "typescript"
+  ],
+  "author": "Bence Pentek",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.2.2"
+  }
+}
