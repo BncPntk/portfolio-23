@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "skipLibCheck": false,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
+    "outDir": "./public"
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
