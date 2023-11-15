@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc && npm run copy-css",
-    "copy-css": "copy src\\css\\style.css public\\css",
+    "copy-css": "xcopy /s /y src\\css\\style.css public\\style.css",
     "start": "npm run build && node dist/index.js"
   },
   "keywords": [
