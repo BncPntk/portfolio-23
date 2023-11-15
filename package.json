@@ -4,7 +4,8 @@
   "description": "My personal portfolio",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy-css",
+    "copy-css": "copy src\\css\\style.css public\\css",
     "start": "npm run build && node dist/index.js"
   },
   "keywords": [
