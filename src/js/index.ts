@@ -198,8 +198,7 @@ const projects: Project[] = [
       order: [1, 1],
     },
     imgGroup: {
-      imagePath: '/images/frame_easy-grocery.png',
-      // imagePath: '/src/images/frame_easy-grocery.png',
+      imagePath: '/images/frame_swiftshift.png',
       order: [2, 2],
     },
   },
