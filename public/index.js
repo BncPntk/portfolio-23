@@ -1,4 +1,7 @@
 "use strict";
+const aboutSection = document.getElementById('aboutSection');
+const projectsSection = document.getElementById('projectsSection');
+const cvSection = document.getElementById('cvSection');
 function getRandomColor() {
     const greenComponent = Math.floor(Math.random() * 156) + 100;
     const blueComponent = Math.floor(Math.random() * 156) + 100;
@@ -38,37 +41,145 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         blobPath.addEventListener('click', handleClick);
     }
+    const aboutSection = document.getElementById('aboutSection');
+    const projectsSection = document.getElementById('projectsSection');
+    const cvSection = document.getElementById('cvSection');
     const blob = document.querySelector('.blob');
-    const initialTop = 220;
+    // const initialTop = 220;
     const leftMovementThreshold = 150;
-    const maxLeftMovement = -395;
-    const showTextThreshold = 500;
     let prevScrollY = 0;
+    let movementFactor = 0.05; // control amount of blob movement
     window.addEventListener('scroll', function () {
         const scrollY = window.scrollY || window.pageYOffset;
         const scrollDelta = scrollY - prevScrollY;
-        const newTop = Math.max(initialTop, initialTop + scrollDelta * 0.1) + 'px';
-        blob.style.top = newTop;
+        // const newTop = Math.max(initialTop, initialTop + scrollDelta * movementFactor) + 'px';
+        // blob.style.top = newTop;
         if (scrollY >= leftMovementThreshold) {
-            const leftMovement = Math.min(maxLeftMovement, (scrollY - leftMovementThreshold) * 0.1);
-            blob.style.transform = `translate(${leftMovement}px, ${scrollY * 0.1}px)`;
-            blobText?.style.setProperty('opacity', scrollY >= showTextThreshold ? '1' : '0');
+            const narrowScreenBreakpoint = 1660;
+            const mediumScreenBreakpoint = 1860;
+            const wideScreenBreakpoint = 2050;
+            const extraWideScreenBreakpoint = 2560;
+            let maxLeftMovement;
+            if (window.innerWidth <= narrowScreenBreakpoint) {
+                maxLeftMovement = -275;
+            }
+            else if (window.innerWidth <= mediumScreenBreakpoint) {
+                maxLeftMovement = -300;
+            }
+            else if (window.innerWidth <= wideScreenBreakpoint) {
+                maxLeftMovement = -500;
+            }
+            else if (window.innerWidth <= extraWideScreenBreakpoint) {
+                maxLeftMovement = -575;
+            }
+            else {
+                maxLeftMovement = -600;
+            }
+            const leftMovement = Math.min(maxLeftMovement, (scrollY - leftMovementThreshold) * movementFactor);
+            blob.style.transform = `translate(${leftMovement}px, ${scrollY * movementFactor}px)`;
         }
         else {
             blob.style.transform = 'translate(0px, 0px)';
-            blobText?.style.setProperty('opacity', '0');
         }
         prevScrollY = scrollY;
     });
-    const section1Link = document.querySelector('.main-nav-link.about-link');
-    if (section1Link) {
-        section1Link.addEventListener('click', function (event) {
-            event.preventDefault();
-            // Scroll to Y position 500
-            window.scrollTo({
-                top: showTextThreshold,
-                behavior: 'smooth', //auto
+    window.addEventListener('resize', function () {
+        const narrowScreenBreakpoint = 1660;
+        const mediumScreenBreakpoint = 1860;
+        const wideScreenBreakpoint = 2050;
+        const extraWideScreenBreakpoint = 2560;
+        if (window.innerWidth <= narrowScreenBreakpoint) {
+            movementFactor = 0.03;
+        }
+        else if (window.innerWidth <= mediumScreenBreakpoint) {
+            movementFactor = 0.04;
+        }
+        else if (window.innerWidth <= wideScreenBreakpoint) {
+            movementFactor = 0.05;
+        }
+        else if (window.innerWidth <= extraWideScreenBreakpoint) {
+            movementFactor = 0.06;
+        }
+        else {
+            movementFactor = 0.07; // Default movement factor for larger screens
+        }
+    });
+    // SCROLL TO SECTION
+    function addScrollListener(sectionDiv, section, block) {
+        const element = document.querySelector(sectionDiv);
+        if (element) {
+            element.addEventListener('click', (event) => {
+                event.preventDefault();
+                section?.scrollIntoView({ behavior: 'smooth', block });
             });
-        });
+        }
+    }
+    addScrollListener('.main-nav-link.about-link', aboutSection, 'start');
+    addScrollListener('.main-nav-link.projects-link', projectsSection, 'start');
+    addScrollListener('.main-nav-link.cv-link', cvSection, 'start');
+});
+// SHOW SECTION ON SIDE
+// document.addEventListener('DOMContentLoaded', function () {
+//   const blobPath = document.getElementById('blobPath') as SVGPathElement | null;
+//   const blobText = document.querySelector('.hero-left-blob-text') as HTMLElement | null;
+//   const aboutSection = document.getElementById('aboutSection');
+//   const projectsSection = document.getElementById('projectsSection');
+//   const cvSection = document.getElementById('cvSection');
+//   const sectionNames = ['About', 'Projects', 'CV'];
+//   let currentSectionIndex = 0;
+//   function updateBlobText() {
+//     if (blobText) {
+//       blobText.textContent = sectionNames[currentSectionIndex];
+//     }
+//   }
+//   function determineCurrentSection(scrollY: number) {
+//     const sectionOffsets = [
+//       aboutSection?.offsetTop || 0,
+//       projectsSection?.offsetTop || 0,
+//       cvSection?.offsetTop || 0,
+//     ];
+//     for (let i = sectionOffsets.length - 1; i >= 0; i--) {
+//       if (scrollY >= sectionOffsets[i]) {
+//         currentSectionIndex = i;
+//         break;
+//       }
+//     }
+//     updateBlobText();
+//   }
+//   function updateBlobTextBasedOnSection() {
+//     const scrollY = window.scrollY || window.pageYOffset;
+//     determineCurrentSection(scrollY);
+//   }
+//   window.addEventListener('scroll', updateBlobTextBasedOnSection);
+// });
+function logScrollY() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    console.log('Scroll Y:', scrollY);
+}
+// 600 - 1000 about
+// 1200 -  2400 projects
+// 2600 -  3500 c
+window.addEventListener('scroll', function () {
+    const scrollY = window.scrollY;
+    if (scrollY >= 600 && scrollY < 1000) {
+        updateSectionName('About', 700, 50, 1);
+    }
+    else if (scrollY >= 1200 && scrollY < 2400) {
+        updateSectionName('Projects', 700, 50, 1);
+    }
+    else if (scrollY >= 2600 && scrollY < 3300) {
+        updateSectionName('CV', 700, 50, 1);
+    }
+    else {
+        updateSectionName('', 0, 0, 0);
     }
 });
+function updateSectionName(name, top, left, opacity) {
+    const sectionNameElement = document.querySelector('.section-name-text');
+    if (sectionNameElement) {
+        sectionNameElement.textContent = name;
+        sectionNameElement.style.top = `${top}px`;
+        sectionNameElement.style.left = `${left}px`;
+        sectionNameElement.style.opacity = opacity.toString();
+    }
+}
