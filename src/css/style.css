@@ -325,6 +325,11 @@ body {
   width: 80%;
   max-width: 100%;
   height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.project-img:hover {
+  transform: scale(1.03);
 }
 
 .project-description {

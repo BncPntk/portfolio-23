@@ -199,6 +199,7 @@ const projects: Project[] = [
     },
     imgGroup: {
       imagePath: '/images/frame_swiftshift.png',
+      // imagePath: '/src/images/frame_swiftshift.png',
       order: [2, 2],
     },
   },
