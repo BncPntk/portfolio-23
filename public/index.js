@@ -194,7 +194,7 @@ const projects = [
             order: [1, 1],
         },
         imgGroup: {
-            imagePath: '/src/images/frame_easy-grocery.png',
+            imagePath: '/images/frame_easy-grocery.png',
             order: [2, 2],
         },
     },
@@ -207,7 +207,7 @@ const projects = [
             order: [4, 3],
         },
         imgGroup: {
-            imagePath: '/src/images/frame_easy-grocery.png',
+            imagePath: '/images/frame_easy-grocery.png',
             order: [3, 4],
         },
     },
@@ -220,7 +220,7 @@ const projects = [
             order: [5, 5],
         },
         imgGroup: {
-            imagePath: '/src/images/frame_easy-grocery.png',
+            imagePath: '/images/frame_easy-grocery.png',
             order: [6, 6],
         },
     },
