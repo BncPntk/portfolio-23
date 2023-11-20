@@ -156,18 +156,18 @@ function logScrollY() {
     const scrollY = window.scrollY || window.pageYOffset;
     console.log('Scroll Y:', scrollY);
 }
-// 600 - 1000 about
+// 680 - 1200 about
 // 1200 -  2400 projects
 // 2600 -  3500 c
 window.addEventListener('scroll', function () {
     const scrollY = window.scrollY;
-    if (scrollY >= 600 && scrollY < 1000) {
+    if (scrollY >= 680 && scrollY < 1200) {
         updateSectionName('About', 700, 50, 1);
     }
-    else if (scrollY >= 1200 && scrollY < 2400) {
+    else if (scrollY >= 1600 && scrollY < 2500) {
         updateSectionName('Projects', 700, 50, 1);
     }
-    else if (scrollY >= 2600 && scrollY < 3300) {
+    else if (scrollY >= 2900 && scrollY < 3300) {
         updateSectionName('CV', 700, 50, 1);
     }
     else {
