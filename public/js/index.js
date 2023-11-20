@@ -1,4 +1,8 @@
 "use strict";
+// import { projects } from './data';
+// import { Project } from './data';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.projects = void 0;
 const aboutSection = document.getElementById('aboutSection');
 const projectsSection = document.getElementById('projectsSection');
 const cvSection = document.getElementById('cvSection');
@@ -52,6 +56,8 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', function () {
         const scrollY = window.scrollY || window.pageYOffset;
         const scrollDelta = scrollY - prevScrollY;
+        // const newTop = Math.max(initialTop, initialTop + scrollDelta * movementFactor) + 'px';
+        // blob.style.top = newTop;
         if (scrollY >= leftMovementThreshold) {
             const narrowScreenBreakpoint = 1660;
             const mediumScreenBreakpoint = 1860;
@@ -99,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
             movementFactor = 0.06;
         }
         else {
-            movementFactor = 0.07; // default for larger screens
+            movementFactor = 0.07; // Default movement factor for larger screens
         }
     });
     // SCROLL TO SECTION
@@ -116,6 +122,40 @@ document.addEventListener('DOMContentLoaded', function () {
     addScrollListener('.main-nav-link.projects-link', projectsSection, 'start');
     addScrollListener('.main-nav-link.cv-link', cvSection, 'start');
 });
+// SHOW SECTION ON SIDE
+// document.addEventListener('DOMContentLoaded', function () {
+//   const blobPath = document.getElementById('blobPath') as SVGPathElement | null;
+//   const blobText = document.querySelector('.hero-left-blob-text') as HTMLElement | null;
+//   const aboutSection = document.getElementById('aboutSection');
+//   const projectsSection = document.getElementById('projectsSection');
+//   const cvSection = document.getElementById('cvSection');
+//   const sectionNames = ['About', 'Projects', 'CV'];
+//   let currentSectionIndex = 0;
+//   function updateBlobText() {
+//     if (blobText) {
+//       blobText.textContent = sectionNames[currentSectionIndex];
+//     }
+//   }
+//   function determineCurrentSection(scrollY: number) {
+//     const sectionOffsets = [
+//       aboutSection?.offsetTop || 0,
+//       projectsSection?.offsetTop || 0,
+//       cvSection?.offsetTop || 0,
+//     ];
+//     for (let i = sectionOffsets.length - 1; i >= 0; i--) {
+//       if (scrollY >= sectionOffsets[i]) {
+//         currentSectionIndex = i;
+//         break;
+//       }
+//     }
+//     updateBlobText();
+//   }
+//   function updateBlobTextBasedOnSection() {
+//     const scrollY = window.scrollY || window.pageYOffset;
+//     determineCurrentSection(scrollY);
+//   }
+//   window.addEventListener('scroll', updateBlobTextBasedOnSection);
+// });
 function logScrollY() {
     const scrollY = window.scrollY || window.pageYOffset;
     console.log('Scroll Y:', scrollY);
@@ -147,7 +187,7 @@ function updateSectionName(name, top, left, opacity) {
         sectionNameElement.style.opacity = opacity.toString();
     }
 }
-const projects = [
+exports.projects = [
     // order = [Z pattern, mobile]
     {
         textGroup: {
@@ -159,8 +199,8 @@ const projects = [
             order: [1, 1],
         },
         imgGroup: {
-            imagePath: '/images/frame_easy-grocery.png',
-            // imagePath: '/src/images/frame_easy-grocery.png',
+            // imagePath: '/images/frame_easy-grocery.png',
+            imagePath: '/src/images/frame_easy-grocery.png',
             order: [2, 2],
         },
     },
@@ -174,8 +214,8 @@ const projects = [
             order: [4, 3],
         },
         imgGroup: {
-            imagePath: '/images/frame_easy-grocery.png',
-            // imagePath: '/src/images/frame_easy-grocery.png',
+            // imagePath: '/images/frame_easy-grocery.png',
+            imagePath: '/src/images/frame_easy-grocery.png',
             order: [3, 4],
         },
     },
@@ -183,20 +223,11 @@ const projects = [
 function generateProjectHTML(project, index) {
     const textOrderClass = `order-${project.textGroup.order[0]} order-mobile-${project.textGroup.order[1]}`;
     const imgOrderClass = `order-${project.imgGroup.order[0]} order-mobile-${project.imgGroup.order[1]}`;
-    const stacksHTML = project.textGroup.stacks
-        ? `<div class="project-stacks">${project.textGroup.stacks
-            .map((stack, stackIndex) => {
-            const iconPath = `/images/icons/${stack}.svg`;
-            return `<span><img src="${iconPath}" alt="${stack}" class="stack-icon" /></span>`;
-        })
-            .join('')}</div>`
-        : '';
     return `
     <!-- PROJECT ${index} -->
     <div class="project-text-box ${textOrderClass}" style="order: ${project.textGroup.order[0]};">
       <h3 class="heading-tertiary">${project.textGroup.title}</h3>
       <p class="project-description">${project.textGroup.description}</p>
-      ${stacksHTML}
       <div class="project-icons">
         <div>
           <a href="${project.textGroup.codeLink}" class="project-icon" target="_blank">
@@ -246,5 +277,5 @@ function insertProjectsHTML(html) {
         projectsGrid.innerHTML = html;
     }
 }
-const allProjectsHTML = generateAllProjectsHTML(projects);
+const allProjectsHTML = generateAllProjectsHTML(exports.projects);
 insertProjectsHTML(allProjectsHTML);

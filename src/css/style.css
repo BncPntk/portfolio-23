@@ -274,6 +274,18 @@ body {
   padding: 18.2rem 2rem 34rem 2rem;
 }
 
+#projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-text-box,
+.project-img-box {
+  text-align: center;
+  padding: 5rem 0;
+}
+
 .project-img-box {
   display: flex;
   align-items: center;
@@ -289,10 +301,10 @@ body {
   z-index: -2;
   content: '';
   display: block;
-  width: 70%;
-  padding-bottom: 70%;
+  width: 62%;
+  padding-bottom: 62%;
   border-radius: 50%;
-  background-color: var(--primary-blue);
+  background: linear-gradient(-120deg, #0284c7, #1e3a8a);
 }
 
 .project-img-box::after {
@@ -303,26 +315,43 @@ body {
   z-index: -1;
   content: '';
   display: block;
-  width: 60%;
-  padding-bottom: 60%;
+  width: 50%;
+  padding-bottom: 50%;
   border-radius: 50%;
-  background-color: var(--secondary-blue);
+  background-color: var(--primary-light);
 }
 
 .project-img {
   width: 80%;
+  max-width: 100%;
+  height: auto;
 }
+
 .project-description {
-  font-size: 1.8rem;
-  line-height: 1;
+  font-size: 2rem;
+  line-height: 1.3;
   margin-bottom: 3.2rem;
 }
+
+.project-stacks {
+  margin-bottom: 1.4rem;
+}
+
+.project-stacks span {
+  padding: 0 2rem;
+}
+
+.stack-icon {
+  width: 38px;
+}
+
 .project-icons {
   padding: 0 1.6rem;
   display: flex;
   align-items: center;
   justify-content: end;
 }
+
 .project-icons a:link,
 .project-icons a:visited {
   fill: var(--action-dark);
@@ -334,6 +363,7 @@ body {
   fill: var(--action-light);
   color: var(--action-light);
 }
+
 .project-icon {
   display: flex;
   align-items: center;
@@ -341,9 +371,21 @@ body {
   gap: 1.4rem;
   text-decoration: none;
 }
+
 .project-icon span {
   font-size: 1.6em;
   font-weight: 600;
+}
+
+.project-icons,
+.project-icon {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.project-icon svg {
+  margin-right: 0.5rem;
 }
 
 /* ========================================
@@ -509,6 +551,31 @@ footer strong {
    MEDIA QUERIES
 ======================================== */
 
+@media (max-width: 698px) {
+  .project-text-box {
+    margin: 4rem 0 -3rem 0;
+  }
+
+  .order-mobile-1 {
+    order: 1 !important;
+  }
+  .order-mobile-2 {
+    order: 2 !important;
+  }
+  .order-mobile-3 {
+    order: 3 !important;
+  }
+  .order-mobile-4 {
+    order: 4 !important;
+  }
+  .order-mobile-5 {
+    order: 5 !important;
+  }
+  .order-mobile-6 {
+    order: 6 !important;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 0 2rem;
@@ -580,6 +647,28 @@ footer strong {
     max-width: 100%;
     text-align: start;
     margin-top: 2rem;
+  }
+
+  .cv-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    margin-bottom: 6rem;
+  }
+
+  .cv-image {
+    width: 100%;
+    padding: 3.4rem 1rem 1rem 1rem;
+  }
+
+  .cv-download {
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  .cv-content::before {
+    height: 100%;
+    width: 70%;
   }
 }
 
@@ -654,98 +743,9 @@ footer strong {
   }
 }
 
-/* fdsdsd */
-
-.section-projects {
-  padding: 6rem 0;
-}
-
-#projectsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.project-text-box,
-.project-img-box {
-  text-align: center;
-  padding: 5rem 0;
-}
-
-.project-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.project-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.project-icon {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #333;
-}
-
-.project-icon svg {
-  margin-right: 0.5rem;
-}
-
 @media (min-width: 769px) {
   #projectsGrid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 698px) {
-  .project-text-box {
-    margin: 4rem 0 -3rem 0;
-  }
-
-  .order-mobile-1 {
-    order: 1 !important;
-  }
-  .order-mobile-2 {
-    order: 2 !important;
-  }
-  .order-mobile-3 {
-    order: 3 !important;
-  }
-  .order-mobile-4 {
-    order: 4 !important;
-  }
-  .order-mobile-5 {
-    order: 5 !important;
-  }
-  .order-mobile-6 {
-    order: 6 !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .cv-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
-    margin-bottom: 6rem;
-  }
-
-  .cv-image {
-    width: 100%;
-    padding: 3.4rem 1rem 1rem 1rem;
-  }
-
-  .cv-download {
-    width: 100%;
-    margin-bottom: 4rem;
-  }
-
-  .cv-content::before {
-    height: 100%;
-    width: 70%;
   }
 }
 

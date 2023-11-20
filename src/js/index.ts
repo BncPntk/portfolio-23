@@ -68,8 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', function () {
     const scrollY = window.scrollY || window.pageYOffset;
     const scrollDelta = scrollY - prevScrollY;
-    // const newTop = Math.max(initialTop, initialTop + scrollDelta * movementFactor) + 'px';
-    // blob.style.top = newTop;
 
     if (scrollY >= leftMovementThreshold) {
       const narrowScreenBreakpoint = 1660;
@@ -114,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (window.innerWidth <= extraWideScreenBreakpoint) {
       movementFactor = 0.06;
     } else {
-      movementFactor = 0.07; // Default movement factor for larger screens
+      movementFactor = 0.07; // default for larger screens
     }
   });
 
@@ -134,48 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
   addScrollListener('.main-nav-link.cv-link', cvSection, 'start');
 });
 
-// SHOW SECTION ON SIDE
-// document.addEventListener('DOMContentLoaded', function () {
-//   const blobPath = document.getElementById('blobPath') as SVGPathElement | null;
-//   const blobText = document.querySelector('.hero-left-blob-text') as HTMLElement | null;
-
-//   const aboutSection = document.getElementById('aboutSection');
-//   const projectsSection = document.getElementById('projectsSection');
-//   const cvSection = document.getElementById('cvSection');
-
-//   const sectionNames = ['About', 'Projects', 'CV'];
-//   let currentSectionIndex = 0;
-
-//   function updateBlobText() {
-//     if (blobText) {
-//       blobText.textContent = sectionNames[currentSectionIndex];
-//     }
-//   }
-
-//   function determineCurrentSection(scrollY: number) {
-//     const sectionOffsets = [
-//       aboutSection?.offsetTop || 0,
-//       projectsSection?.offsetTop || 0,
-//       cvSection?.offsetTop || 0,
-//     ];
-
-//     for (let i = sectionOffsets.length - 1; i >= 0; i--) {
-//       if (scrollY >= sectionOffsets[i]) {
-//         currentSectionIndex = i;
-//         break;
-//       }
-//     }
-
-//     updateBlobText();
-//   }
-
-//   function updateBlobTextBasedOnSection() {
-//     const scrollY = window.scrollY || window.pageYOffset;
-//     determineCurrentSection(scrollY);
-//   }
-
-//   window.addEventListener('scroll', updateBlobTextBasedOnSection);
-// });
 function logScrollY() {
   const scrollY = window.scrollY || window.pageYOffset;
   console.log('Scroll Y:', scrollY);
@@ -215,6 +171,7 @@ interface ProjectTextGroup {
   description: string;
   codeLink: string;
   demoLink: string;
+  stacks: string[];
   order: number[];
 }
 
@@ -233,40 +190,33 @@ const projects: Project[] = [
   {
     textGroup: {
       title: 'SwiftShift Movers',
-      description: '1Lorem ipsum, dolor sit amet...',
+      description:
+        "This is a fictional moving team's online platform for hassle-free appointment scheduling, mainly built to practice Tailwind CSS.",
       codeLink: 'https://github.com/BncPntk/SwiftShift-Movers',
       demoLink: 'https://bncpntk-swiftshift-movers.netlify.app/',
+      stacks: ['react', 'tailwind'],
       order: [1, 1],
     },
     imgGroup: {
       imagePath: '/images/frame_easy-grocery.png',
+      // imagePath: '/src/images/frame_easy-grocery.png',
       order: [2, 2],
     },
   },
   {
     textGroup: {
-      title: 'Project 2',
-      description: '2Lorem ipsum, dolor sit amet...',
-      codeLink: '#',
-      demoLink: '#',
+      title: 'EasyGrocery',
+      description:
+        'EasyGrocery is a user-friendly React-based shopping list app designed to simplify your grocery shopping experience.',
+      codeLink: 'https://github.com/BncPntk/EasyGrocery',
+      demoLink: 'https://bncpntk-easy-grocery.netlify.app/',
+      stacks: ['react', 'css'],
       order: [4, 3],
     },
     imgGroup: {
       imagePath: '/images/frame_easy-grocery.png',
+      // imagePath: '/src/images/frame_easy-grocery.png',
       order: [3, 4],
-    },
-  },
-  {
-    textGroup: {
-      title: 'Project 3',
-      description: '3Lorem ipsum, dolor sit amet...',
-      codeLink: '#',
-      demoLink: '#',
-      order: [5, 5],
-    },
-    imgGroup: {
-      imagePath: '/images/frame_easy-grocery.png',
-      order: [6, 6],
     },
   },
 ];
@@ -275,11 +225,21 @@ function generateProjectHTML(project: Project, index: number) {
   const textOrderClass = `order-${project.textGroup.order[0]} order-mobile-${project.textGroup.order[1]}`;
   const imgOrderClass = `order-${project.imgGroup.order[0]} order-mobile-${project.imgGroup.order[1]}`;
 
+  const stacksHTML = project.textGroup.stacks
+    ? `<div class="project-stacks">${project.textGroup.stacks
+        .map((stack, stackIndex) => {
+          const iconPath = `/images/icons/${stack}.svg`;
+          return `<span><img src="${iconPath}" alt="${stack}" class="stack-icon" /></span>`;
+        })
+        .join('')}</div>`
+    : '';
+
   return `
     <!-- PROJECT ${index} -->
     <div class="project-text-box ${textOrderClass}" style="order: ${project.textGroup.order[0]};">
       <h3 class="heading-tertiary">${project.textGroup.title}</h3>
       <p class="project-description">${project.textGroup.description}</p>
+      ${stacksHTML}
       <div class="project-icons">
         <div>
           <a href="${project.textGroup.codeLink}" class="project-icon" target="_blank">
