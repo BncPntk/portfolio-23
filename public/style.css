@@ -220,7 +220,6 @@ body {
 .about-skill-list {
   justify-self: center;
   text-align: right;
-  /* height: 400px; */
 }
 
 .about-skill-list h3 {
@@ -624,19 +623,19 @@ footer strong {
     left: 0px;
   }
   .hero {
-    grid-template-columns: 1fr; /* Change to a single column on smaller screens */
-    padding: 14.2rem 1.6rem; /* Adjust padding for smaller screens */
+    grid-template-columns: 1fr;
+    padding: 14.2rem 1.6rem;
   }
 
   .hero-left-box {
-    display: none; /* Hide the left box on smaller screens */
+    display: none;
   }
 
   .hero-right-box {
     margin-bottom: auto;
     text-align: center;
     padding: 0;
-    grid-column: 1 / span 1; /* Center the right box on smaller screens */
+    grid-column: 1 / span 1;
   }
   .hero-right-links {
     width: fit-content;
@@ -689,8 +688,6 @@ footer strong {
   margin-right: 0.5rem;
 }
 
-/* ... Your existing CSS ... */
-
 @media (min-width: 769px) {
   #projectsGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -722,7 +719,6 @@ footer strong {
   }
 }
 
-/* Add this to your existing CSS */
 @media (max-width: 768px) {
   .cv-content {
     flex-direction: column;
@@ -747,9 +743,8 @@ footer strong {
   }
 }
 
-/* Add a new media query for tablet screens */
 @media (min-width: 769px) and (max-width: 1024px) {
   .cv-content {
-    padding: 0 5rem; /* Adjust the side padding for tablet screens */
+    padding: 0 5rem;
   }
 }
