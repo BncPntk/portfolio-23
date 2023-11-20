@@ -159,6 +159,10 @@ body {
 #blobSvg {
   display: flex;
 }
+#blobPath:hover {
+  cursor: pointer;
+}
+
 .blob {
   transition: transform 0.35s ease-in-out;
 }
@@ -649,7 +653,9 @@ footer strong {
     display: none;
   }
 }
+
 /* fdsdsd */
+
 .section-projects {
   padding: 6rem 0;
 }
@@ -696,26 +702,26 @@ footer strong {
 
 @media (max-width: 698px) {
   .project-text-box {
-    margin: -4rem 0 4rem 0;
+    margin: 4rem 0 -3rem 0;
   }
 
   .order-mobile-1 {
-    order: 1;
+    order: 1 !important;
   }
   .order-mobile-2 {
-    order: 2;
+    order: 2 !important;
   }
   .order-mobile-3 {
-    order: 3;
+    order: 3 !important;
   }
   .order-mobile-4 {
-    order: 4;
+    order: 4 !important;
   }
   .order-mobile-5 {
-    order: 5;
+    order: 5 !important;
   }
   .order-mobile-6 {
-    order: 6;
+    order: 6 !important;
   }
 }
 

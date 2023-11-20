@@ -183,3 +183,93 @@ function updateSectionName(name, top, left, opacity) {
         sectionNameElement.style.opacity = opacity.toString();
     }
 }
+const projects = [
+    // order = [Z pattern, mobile]
+    {
+        textGroup: {
+            title: 'SwiftShift Movers',
+            description: '1Lorem ipsum, dolor sit amet...',
+            codeLink: 'https://github.com/BncPntk/SwiftShift-Movers',
+            demoLink: 'https://bncpntk-swiftshift-movers.netlify.app/',
+            order: [1, 1],
+        },
+        imgGroup: {
+            imagePath: '/src/images/frame_easy-grocery.png',
+            order: [2, 2],
+        },
+    },
+    {
+        textGroup: {
+            title: 'Project 2',
+            description: '2Lorem ipsum, dolor sit amet...',
+            codeLink: '#',
+            demoLink: '#',
+            order: [4, 3],
+        },
+        imgGroup: {
+            imagePath: '/src/images/frame_easy-grocery.png',
+            order: [3, 4],
+        },
+    },
+    {
+        textGroup: {
+            title: 'Project 3',
+            description: '3Lorem ipsum, dolor sit amet...',
+            codeLink: '#',
+            demoLink: '#',
+            order: [5, 5],
+        },
+        imgGroup: {
+            imagePath: '/src/images/frame_easy-grocery.png',
+            order: [6, 6],
+        },
+    },
+];
+function generateProjectHTML(project, index) {
+    const textOrderClass = `order-${project.textGroup.order[0]} order-mobile-${project.textGroup.order[1]}`;
+    const imgOrderClass = `order-${project.imgGroup.order[0]} order-mobile-${project.imgGroup.order[1]}`;
+    return `
+    <!-- PROJECT ${index} -->
+    <div class="project-text-box ${textOrderClass}" style="order: ${project.textGroup.order[0]};">
+      <h3 class="heading-tertiary">${project.textGroup.title}</h3>
+      <p class="project-description">${project.textGroup.description}</p>
+      <div class="project-icons">
+        <div>
+          <a href="${project.textGroup.codeLink}" class="project-icon" target="_blank">
+            <span>Code</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="40px" height="40px">
+              <!-- Code SVG Path -->
+            </svg>
+          </a>
+        </div>
+        <div>
+          <a href="${project.textGroup.demoLink}" class="project-icon" target="_blank">
+            <span>Live demo</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="42px" height="42px" viewBox="0 0 64 64">
+              <!-- Live Demo SVG Path -->
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-img-box ${imgOrderClass}" style="order: ${project.imgGroup.order[0]};">
+      <img src="${project.imgGroup.imagePath || '/src/images/frame_easy-grocery.png'}" class="project-img" alt="${project.textGroup.title || 'Project'}" />
+    </div>
+  `;
+}
+function generateAllProjectsHTML(projects) {
+    let html = '';
+    projects.forEach((project, index) => {
+        const projectHTML = generateProjectHTML(project, index + 1);
+        html += projectHTML;
+    });
+    return html;
+}
+function insertProjectsHTML(html) {
+    const projectsGrid = document.getElementById('projectsGrid');
+    if (projectsGrid) {
+        projectsGrid.innerHTML = html;
+    }
+}
+const allProjectsHTML = generateAllProjectsHTML(projects);
+insertProjectsHTML(allProjectsHTML);
